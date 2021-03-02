@@ -5,17 +5,19 @@ import java.util.Objects;
 
 public class Post {
 
-    private long idPost;
-    private Class<? extends Feed> feed;
+    private Integer postId;
+    private Feed feed;
     private String text;
     private LocalDate datePosted;
+    private String author;
 
-    public Post(String text, LocalDate datePosted) {
+    public Post(String text, LocalDate datePosted,String author) {
         this.text = text;
         this.datePosted = datePosted;
+        this.author = author;
     }
 
-    public void setFeed(Class<? extends Feed> feed) {
+    public void setFeed( Feed feed) {
         this.feed = feed;
     }
 
@@ -27,11 +29,11 @@ public class Post {
         this.datePosted = datePosted;
     }
 
-    public long getIdPost() {
-        return idPost;
+    public Integer getPostId() {
+        return postId;
     }
 
-    public Class<? extends Feed> getFeed() {
+    public Feed getFeed() {
         return feed;
     }
 
@@ -43,12 +45,22 @@ public class Post {
         return datePosted;
     }
 
+    public void setPostId(Integer postId) {
+        this.postId = postId;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     @Override
     public String toString() {
-        return "Post{" +
-                "idPost=" + idPost +
+        return "Post {" +
                 ", feed=" + feed +
-                ", text='" + text + '\'' +
                 ", datePosted=" + datePosted +
                 '}';
     }
@@ -58,11 +70,11 @@ public class Post {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Post post = (Post) o;
-        return idPost == post.idPost && Objects.equals(feed, post.feed) && text.equals(post.text) && datePosted.equals(post.datePosted);
+        return postId == post.postId && Objects.equals(feed, post.feed) && text.equals(post.text) && datePosted.equals(post.datePosted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idPost, feed, text, datePosted);
+        return Objects.hash(postId, feed, text, datePosted);
     }
 }

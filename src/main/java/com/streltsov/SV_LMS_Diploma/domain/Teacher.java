@@ -45,10 +45,8 @@ public class Teacher extends User {
         return "Teacher{" +
                 "role='" + role + '\'' +
                 ", groups=" + groups +
-                ", idUser=" + idUser +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
                 '}';
     }
 

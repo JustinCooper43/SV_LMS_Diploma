@@ -7,8 +7,8 @@ import java.util.Objects;
 
 public class Lesson {
 
-    private long idLesson;
-    private Class<? extends Group> group;
+    private Integer lessonId;
+    private Group group;
     private String topic;
     private LocalDate date;
     private String materials;
@@ -25,6 +25,7 @@ public class Lesson {
         if (this.hwTasks == null) {
             this.hwTasks = new ArrayList<>();
         }
+        task.setLesson(this);
         this.hwTasks.add(task);
         return true;
     }
@@ -42,7 +43,7 @@ public class Lesson {
         return true;
     }
 
-    public void setGroup(Class<? extends Group> group) {
+    public void setGroup(Group group) {
         this.group = group;
     }
 
@@ -58,11 +59,11 @@ public class Lesson {
         this.materials = materials;
     }
 
-    public long getIdLesson() {
-        return idLesson;
+    public Integer getLessonId() {
+        return lessonId;
     }
 
-    public Class<? extends Group> getGroup() {
+    public  Group getGroup() {
         return group;
     }
 
@@ -82,15 +83,15 @@ public class Lesson {
         return hwTasks;
     }
 
+    public void setLessonId(Integer lessonId) {
+        this.lessonId = lessonId;
+    }
+
     @Override
     public String toString() {
         return "Lesson{" +
-                "idLesson=" + idLesson +
-                ", group=" + group +
+                "group=" + group +
                 ", topic='" + topic + '\'' +
-                ", date=" + date +
-                ", materials='" + materials + '\'' +
-                ", hwTasks=" + hwTasks +
                 '}';
     }
 
@@ -99,11 +100,11 @@ public class Lesson {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Lesson lesson = (Lesson) o;
-        return idLesson == lesson.idLesson && group.equals(lesson.group) && topic.equals(lesson.topic) && date.equals(lesson.date) && materials.equals(lesson.materials) && Objects.equals(hwTasks, lesson.hwTasks);
+        return lessonId == lesson.lessonId && group.equals(lesson.group) && topic.equals(lesson.topic) && date.equals(lesson.date) && materials.equals(lesson.materials) && Objects.equals(hwTasks, lesson.hwTasks);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idLesson, group, topic, date, materials, hwTasks);
+        return Objects.hash(lessonId, group, topic, date, materials, hwTasks);
     }
 }

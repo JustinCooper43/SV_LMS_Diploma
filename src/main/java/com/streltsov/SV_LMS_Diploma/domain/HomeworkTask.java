@@ -5,11 +5,12 @@ import java.util.Objects;
 
 public class HomeworkTask {
 
-    private long idHWTask;
+    private Integer hwTaskId;
     private String task;
     private final LocalDate date;
     private String materials;
     private LocalDate deadLine;
+    private Lesson lesson;
 
     public HomeworkTask(String task, LocalDate date, String materials, LocalDate deadLine) {
         this.task = task;
@@ -18,8 +19,8 @@ public class HomeworkTask {
         this.deadLine = deadLine;
     }
 
-    public long getIdHWTask() {
-        return idHWTask;
+    public Integer getHwTaskId() {
+        return hwTaskId;
     }
 
     public String getTask() {
@@ -50,14 +51,24 @@ public class HomeworkTask {
         this.deadLine = deadLine;
     }
 
+    public void setHwTaskId(Integer hwTaskId) {
+        this.hwTaskId = hwTaskId;
+    }
+
+    public Lesson getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
+    }
+
     @Override
     public String toString() {
         return "HomeworkTask{" +
-                "idHWTask=" + idHWTask +
-                ", task='" + task + '\'' +
-                ", date=" + date +
-                ", materials='" + materials + '\'' +
+                "task='" + task + '\'' +
                 ", deadLine=" + deadLine +
+                ", lesson=" + lesson +
                 '}';
     }
 
@@ -66,11 +77,11 @@ public class HomeworkTask {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         HomeworkTask that = (HomeworkTask) o;
-        return idHWTask == that.idHWTask && task.equals(that.task) && date.equals(that.date) && materials.equals(that.materials) && deadLine.equals(that.deadLine);
+        return hwTaskId == that.hwTaskId && task.equals(that.task) && date.equals(that.date) && materials.equals(that.materials) && deadLine.equals(that.deadLine);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idHWTask, task, date, materials, deadLine);
+        return Objects.hash(hwTaskId, task, date, materials, deadLine);
     }
 }

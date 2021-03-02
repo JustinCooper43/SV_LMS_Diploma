@@ -6,10 +6,12 @@ import java.util.Objects;
 
 final public class Feed {
 
-    private Class<? extends Group> group;
+    private Integer feedId;
+    private final Group group;
     private List<Post> posts;
 
-    public Feed() {
+    public Feed(Group group) {
+        this.group = group;
     }
 
     public boolean addPost(Post post) {
@@ -17,7 +19,7 @@ final public class Feed {
             this.posts = new ArrayList<>() {
             };
         }
-        post.setFeed(this.getClass());
+        post.setFeed(this);
         posts.add(post);
         return true;
     }
@@ -28,11 +30,15 @@ final public class Feed {
         return true;
     }
 
-    public void setGroup(Class<? extends Group> group) {
-        this.group = group;
+    public Integer getFeedId() {
+        return feedId;
     }
 
-    public Class<? extends Group> getGroup() {
+    public void setFeedId(Integer feedId) {
+        this.feedId = feedId;
+    }
+
+    public Group getGroup() {
         return group;
     }
 
@@ -40,7 +46,6 @@ final public class Feed {
     public String toString() {
         return "Feed{" +
                 "group=" + group +
-                ", posts=" + posts +
                 '}';
     }
 
@@ -49,11 +54,14 @@ final public class Feed {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Feed feed = (Feed) o;
-        return group.equals(feed.group) && posts.equals(feed.posts);
+        return group.equals(feed.group) && Objects.equals(posts, feed.posts);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(group, posts);
+    }
+
+    public void setGroup(Group group) {
     }
 }

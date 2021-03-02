@@ -43,10 +43,11 @@ public class Runner {
 //     adding posts
         for (int i = 1; i < 11; i++) {
             String textNews = "News " + i;
-            group.getFeed().addPost(new Post(textNews, LocalDate.now()));
+            String author = "Author " + i;
+            group.getFeed().addPost(new Post(textNews, LocalDate.now(),author));
         }
 
-        Post testPost = new Post("test text", LocalDate.now());
+        Post testPost = new Post("test text", LocalDate.now(),"test author");
 
 //      creating object for test
         Lesson testLesson = new Lesson("Test lesson", LocalDate.now(), "Test materials");
@@ -67,6 +68,7 @@ public class Runner {
         Student testStudent = new Student("Test stud", "Lastname test stud", LocalDate.of(1992, 9, 10));
 
         group.addStudent(testStudent);
+        String str = testStudent.getGroup().getName();
 
 //      remove task from lesson
         testLesson.removeTask(testTask);

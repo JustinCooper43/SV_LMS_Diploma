@@ -5,17 +5,17 @@ import java.util.Objects;
 
 public class Student extends User {
 
-    private Class<? extends Group> group;
+    private Group group;
 
     public Student(String firstName, String lastName, LocalDate dateOfBirth) {
         super(firstName, lastName, dateOfBirth);
     }
 
-    public void setGroup(Class<? extends com.streltsov.SV_LMS_Diploma.domain.Group> group) {
+    public void setGroup(Group group) {
         this.group = group;
     }
 
-    public Class<? extends Group> getGroup() {
+    public Group getGroup() {
         return group;
     }
 
@@ -23,10 +23,8 @@ public class Student extends User {
     public String toString() {
         return "Student{" +
                 "group=" + group +
-                ", idUser=" + idUser +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
                 '}';
     }
 

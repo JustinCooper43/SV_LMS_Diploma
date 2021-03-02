@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public abstract class User {
 
-    protected long idUser;
+    protected Integer userId;
     protected String firstName;
     protected String lastName;
     protected LocalDate dateOfBirth;
@@ -40,17 +40,19 @@ public abstract class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public long getIdUser() {
-        return idUser;
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "idUser=" + idUser +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
                 '}';
     }
 
@@ -59,11 +61,11 @@ public abstract class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return idUser == user.idUser && firstName.equals(user.firstName) && lastName.equals(user.lastName) && dateOfBirth.equals(user.dateOfBirth);
+        return userId == user.userId && firstName.equals(user.firstName) && lastName.equals(user.lastName) && dateOfBirth.equals(user.dateOfBirth);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUser, firstName, lastName, dateOfBirth);
+        return Objects.hash(userId, firstName, lastName, dateOfBirth);
     }
 }
