@@ -1,4 +1,4 @@
-package com.streltsov.SV_LMS_Diploma.dao;
+package com.streltsov.SV_LMS_Diploma.dao.interfacesDAO;
 
 import com.streltsov.SV_LMS_Diploma.domain.*;
 
@@ -13,6 +13,7 @@ public class Persistence {
     private final List<HomeworkTask> hwTasksDB;
     private final List<User> userDB;
     private final List<Feed> feedDB;
+    private final List<Homework> hwDB;
 
     private Persistence() {
         this.groupsDB = new ArrayList<>();
@@ -21,6 +22,7 @@ public class Persistence {
         this.hwTasksDB = new ArrayList<>();
         this.userDB = new ArrayList<>();
         this.feedDB = new ArrayList<>();
+        this.hwDB = new ArrayList<>();
     }
 
     public List<Group> getGroupsDB() {
@@ -43,12 +45,15 @@ public class Persistence {
         return userDB;
     }
 
-
     public List<Feed> getFeedDB() {
         return feedDB;
     }
 
-    public static <T> int getNewId(List<T> generalList) {
+    public List<Homework> getHwDB() {
+        return hwDB;
+    }
+
+    public static <T> long getNewId(List<T> generalList) {
         return generalList.size() + 1;
     }
 

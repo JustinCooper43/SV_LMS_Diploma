@@ -1,12 +1,12 @@
 package com.streltsov.SV_LMS_Diploma.dao.inMemoryImpl;
 
 import com.streltsov.SV_LMS_Diploma.domain.HomeworkTask;
-import com.streltsov.SV_LMS_Diploma.dao.HWDao;
-import com.streltsov.SV_LMS_Diploma.dao.Persistence;
+import com.streltsov.SV_LMS_Diploma.dao.interfacesDAO.HWTaskDao;
+import com.streltsov.SV_LMS_Diploma.dao.interfacesDAO.Persistence;
 
 import java.util.List;
 
-public class InMemoryHomeWorkDaoImpl implements HWDao {
+public class InMemoryHomeWorkTaskDaoImpl implements HWTaskDao {
 
     Persistence persistence = Persistence.getInstance();
 
@@ -17,15 +17,15 @@ public class InMemoryHomeWorkDaoImpl implements HWDao {
 
     @Override
 
-    public HomeworkTask saveHW(HomeworkTask homeworkTask) {
-        int newID = Persistence.getNewId(persistence.getHwTasksDB());
+    public boolean saveHWTask(HomeworkTask homeworkTask) {
+        long newID = Persistence.getNewId(persistence.getHwTasksDB());
         homeworkTask.setHwTaskId(newID);
         persistence.getHwTasksDB().add(homeworkTask);
-        return homeworkTask;
+        return true;
     }
 
     @Override
-    public HomeworkTask getHWById(int id) {
+    public HomeworkTask getHWTaskById(long id) {
         for (HomeworkTask homeworkTask : persistence.getHwTasksDB()) {
             if (homeworkTask.getHwTaskId().equals(id)) {
                 return homeworkTask;
@@ -35,15 +35,15 @@ public class InMemoryHomeWorkDaoImpl implements HWDao {
     }
 
     @Override
-    public boolean updateHWById(HomeworkTask homeworkTask) {
-        int idHomeWork = homeworkTask.getHwTaskId();
-        deleteHWById(idHomeWork);
-        saveHW(homeworkTask);
+    public boolean updateHWTask(HomeworkTask homeworkTask) {
+        long idHomeWork = homeworkTask.getHwTaskId();
+        deleteHWTaskById(idHomeWork);
+        saveHWTask(homeworkTask);
         return true;
     }
 
     @Override
-    public boolean deleteHWById(int id) {
+    public boolean deleteHWTaskById(long id) {
         for (HomeworkTask homeworkTask: persistence.getHwTasksDB()) {
             if (homeworkTask.getHwTaskId().equals(id)) {
                 persistence.getHwTasksDB().remove(homeworkTask);

@@ -6,7 +6,7 @@ import java.util.Objects;
 
 final public class Feed {
 
-    private Integer feedId;
+    private Long feedId;
     private final Group group;
     private List<Post> posts;
 
@@ -30,16 +30,23 @@ final public class Feed {
         return true;
     }
 
-    public Integer getFeedId() {
+    public Long getFeedId() {
         return feedId;
     }
 
-    public void setFeedId(Integer feedId) {
+    public void setFeedId(Long feedId) {
         this.feedId = feedId;
     }
 
     public Group getGroup() {
         return group;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+    public List<Post> getPosts() {
+        return posts;
     }
 
     @Override

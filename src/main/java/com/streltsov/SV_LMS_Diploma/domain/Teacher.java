@@ -10,6 +10,8 @@ public class Teacher extends User {
     private String role;
     private List<Group> groups;
 
+    public Teacher(){};
+
     public Teacher(String firstName, String lastName, LocalDate dateOfBirth, String role) {
         super(firstName, lastName, dateOfBirth);
         this.role = role;

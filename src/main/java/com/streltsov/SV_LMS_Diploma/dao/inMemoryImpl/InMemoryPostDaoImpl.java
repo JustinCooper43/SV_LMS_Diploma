@@ -1,8 +1,8 @@
 package com.streltsov.SV_LMS_Diploma.dao.inMemoryImpl;
 
 import com.streltsov.SV_LMS_Diploma.domain.Post;
-import com.streltsov.SV_LMS_Diploma.dao.Persistence;
-import com.streltsov.SV_LMS_Diploma.dao.PostDao;
+import com.streltsov.SV_LMS_Diploma.dao.interfacesDAO.Persistence;
+import com.streltsov.SV_LMS_Diploma.dao.interfacesDAO.PostDao;
 
 import java.util.List;
 
@@ -16,15 +16,15 @@ public class InMemoryPostDaoImpl implements PostDao {
     }
 
     @Override
-    public Post savePost(Post post) {
-        int newID = Persistence.getNewId(persistence.getPostsDB());
+    public boolean savePost(Post post) {
+        long newID = Persistence.getNewId(persistence.getPostsDB());
         post.setPostId(newID);
         persistence.getPostsDB().add(post);
-        return post;
+        return true;
     }
 
     @Override
-    public Post getPostById(int id) {
+    public Post getPostById(long id) {
         for (Post post : persistence.getPostsDB()) {
             if (post.getPostId().equals(id)) {
                 return post;
@@ -34,15 +34,15 @@ public class InMemoryPostDaoImpl implements PostDao {
     }
 
     @Override
-    public boolean updatePostById(Post post) {
-        int idPost = post.getPostId();
+    public boolean updatePost(Post post) {
+        long idPost = post.getPostId();
         deletePostById(idPost);
         savePost(post);
         return true;
     }
 
     @Override
-    public boolean deletePostById(int id) {
+    public boolean deletePostById(long id) {
         for (Post post : persistence.getPostsDB()) {
             if (post.getPostId().equals(id)) {
                 persistence.getPostsDB().remove(post);

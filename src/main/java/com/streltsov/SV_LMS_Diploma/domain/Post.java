@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Post {
 
-    private Integer postId;
+    private Long postId;
     private Feed feed;
     private String text;
     private LocalDate datePosted;
@@ -29,7 +29,7 @@ public class Post {
         this.datePosted = datePosted;
     }
 
-    public Integer getPostId() {
+    public Long getPostId() {
         return postId;
     }
 
@@ -45,7 +45,7 @@ public class Post {
         return datePosted;
     }
 
-    public void setPostId(Integer postId) {
+    public void setPostId(Long postId) {
         this.postId = postId;
     }
 

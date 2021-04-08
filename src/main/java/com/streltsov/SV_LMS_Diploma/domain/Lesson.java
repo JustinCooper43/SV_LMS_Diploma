@@ -7,13 +7,15 @@ import java.util.Objects;
 
 public class Lesson {
 
-    private Integer lessonId;
+    private Long lessonId;
     private Group group;
     private String topic;
     private LocalDate date;
     private String materials;
 
     private List<HomeworkTask> hwTasks;
+
+    public Lesson(){}
 
     public Lesson(String topic, LocalDate date, String materials) {
         this.topic = topic;
@@ -59,7 +61,7 @@ public class Lesson {
         this.materials = materials;
     }
 
-    public Integer getLessonId() {
+    public Long getLessonId() {
         return lessonId;
     }
 
@@ -83,8 +85,12 @@ public class Lesson {
         return hwTasks;
     }
 
-    public void setLessonId(Integer lessonId) {
+    public void setLessonId(Long lessonId) {
         this.lessonId = lessonId;
+    }
+
+    public void setHwTasks(List<HomeworkTask> hwTasks) {
+        this.hwTasks = hwTasks;
     }
 
     @Override
@@ -100,7 +106,7 @@ public class Lesson {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Lesson lesson = (Lesson) o;
-        return lessonId == lesson.lessonId && group.equals(lesson.group) && topic.equals(lesson.topic) && date.equals(lesson.date) && materials.equals(lesson.materials) && Objects.equals(hwTasks, lesson.hwTasks);
+        return Objects.equals(lessonId, lesson.lessonId) && Objects.equals(group, lesson.group) && Objects.equals(topic, lesson.topic) && Objects.equals(date, lesson.date) && Objects.equals(materials, lesson.materials) && Objects.equals(hwTasks, lesson.hwTasks);
     }
 
     @Override

@@ -5,12 +5,14 @@ import java.util.Objects;
 
 public class HomeworkTask {
 
-    private Integer hwTaskId;
+    private Long hwTaskId;
     private String task;
-    private final LocalDate date;
+    private LocalDate date;
     private String materials;
     private LocalDate deadLine;
     private Lesson lesson;
+
+    public HomeworkTask(){}
 
     public HomeworkTask(String task, LocalDate date, String materials, LocalDate deadLine) {
         this.task = task;
@@ -19,7 +21,7 @@ public class HomeworkTask {
         this.deadLine = deadLine;
     }
 
-    public Integer getHwTaskId() {
+    public Long getHwTaskId() {
         return hwTaskId;
     }
 
@@ -51,7 +53,7 @@ public class HomeworkTask {
         this.deadLine = deadLine;
     }
 
-    public void setHwTaskId(Integer hwTaskId) {
+    public void setHwTaskId(Long hwTaskId) {
         this.hwTaskId = hwTaskId;
     }
 
@@ -61,6 +63,10 @@ public class HomeworkTask {
 
     public void setLesson(Lesson lesson) {
         this.lesson = lesson;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     @Override

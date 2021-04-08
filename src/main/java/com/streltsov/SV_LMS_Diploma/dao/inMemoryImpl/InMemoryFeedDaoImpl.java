@@ -1,8 +1,8 @@
 package com.streltsov.SV_LMS_Diploma.dao.inMemoryImpl;
 
 import com.streltsov.SV_LMS_Diploma.domain.Feed;
-import com.streltsov.SV_LMS_Diploma.dao.FeedDao;
-import com.streltsov.SV_LMS_Diploma.dao.Persistence;
+import com.streltsov.SV_LMS_Diploma.dao.interfacesDAO.FeedDao;
+import com.streltsov.SV_LMS_Diploma.dao.interfacesDAO.Persistence;
 
 import java.util.List;
 
@@ -16,15 +16,15 @@ public class InMemoryFeedDaoImpl implements FeedDao {
     }
 
     @Override
-    public Feed saveFeed(Feed feed) {
-        int newID = Persistence.getNewId(persistence.getFeedDB());
+    public boolean saveFeed(Feed feed) {
+        long newID = Persistence.getNewId(persistence.getFeedDB());
         feed.setFeedId(newID);
         persistence.getFeedDB().add(feed);
-        return feed;
+        return true;
     }
 
     @Override
-    public Feed getFeedById(int id) {
+    public Feed getFeedById(long id) {
         for (Feed feed : persistence.getFeedDB()) {
             if (feed.getFeedId().equals(id)) {
                 return feed;
@@ -34,15 +34,15 @@ public class InMemoryFeedDaoImpl implements FeedDao {
     }
 
     @Override
-    public boolean updateFeedById(Feed feed) {
-        int idGroup = feed.getFeedId();
+    public boolean updateFeed(Feed feed) {
+        long idGroup = feed.getFeedId();
         deleteFeedById(idGroup);
         saveFeed(feed);
         return true;
     }
 
     @Override
-    public boolean deleteFeedById(int id) {
+    public boolean deleteFeedById(long id) {
         for (Feed feed : persistence.getFeedDB()) {
             if (feed.getFeedId().equals(id)) {
                 persistence.getFeedDB().remove(feed);

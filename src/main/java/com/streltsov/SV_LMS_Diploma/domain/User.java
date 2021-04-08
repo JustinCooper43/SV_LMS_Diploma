@@ -1,14 +1,17 @@
 package com.streltsov.SV_LMS_Diploma.domain;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 public abstract class User {
 
-    protected Integer userId;
+    protected Long userId;
     protected String firstName;
     protected String lastName;
     protected LocalDate dateOfBirth;
+
+    public User(){};
 
     public User(String firstName, String lastName, LocalDate dateOfBirth) {
         this.firstName = firstName;
@@ -40,11 +43,11 @@ public abstract class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -61,11 +64,13 @@ public abstract class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return userId == user.userId && firstName.equals(user.firstName) && lastName.equals(user.lastName) && dateOfBirth.equals(user.dateOfBirth);
+        return userId.equals(user.userId) && firstName.equals(user.firstName) && lastName.equals(user.lastName) && dateOfBirth.equals(user.dateOfBirth);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(userId, firstName, lastName, dateOfBirth);
     }
+
 }
+

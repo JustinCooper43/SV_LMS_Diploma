@@ -1,8 +1,8 @@
 package com.streltsov.SV_LMS_Diploma.dao.inMemoryImpl;
 
 import com.streltsov.SV_LMS_Diploma.domain.Lesson;
-import com.streltsov.SV_LMS_Diploma.dao.Persistence;
-import com.streltsov.SV_LMS_Diploma.dao.LessonDao;
+import com.streltsov.SV_LMS_Diploma.dao.interfacesDAO.Persistence;
+import com.streltsov.SV_LMS_Diploma.dao.interfacesDAO.LessonDao;
 
 import java.util.List;
 
@@ -16,15 +16,15 @@ public class InMemoryLessonDaoImpl implements LessonDao {
     }
 
     @Override
-    public Lesson saveLesson(Lesson lesson) {
-        int newID = Persistence.getNewId(persistence.getLessonsDB());
+    public boolean saveLesson(Lesson lesson) {
+        long newID = Persistence.getNewId(persistence.getLessonsDB());
         lesson.setLessonId(newID);
         persistence.getLessonsDB().add(lesson);
-        return lesson;
+        return true;
     }
 
     @Override
-    public Lesson getLessonById(int id) {
+    public Lesson getLessonById(long id) {
         for (Lesson lesson : persistence.getLessonsDB()) {
             if (lesson.getLessonId().equals(id)) {
                 return lesson;
@@ -34,15 +34,15 @@ public class InMemoryLessonDaoImpl implements LessonDao {
     }
 
     @Override
-    public boolean updateLessonById(Lesson lesson) {
-        int idLesson = lesson.getLessonId();
+    public boolean updateLesson(Lesson lesson) {
+        long idLesson = lesson.getLessonId();
         deleteLessonById(idLesson);
         saveLesson(lesson);
         return true;
     }
 
     @Override
-    public boolean deleteLessonById(int id) {
+    public boolean deleteLessonById(long id) {
         for (Lesson lesson : persistence.getLessonsDB()) {
             if (lesson.getLessonId().equals(id)) {
                 persistence.getLessonsDB().remove(lesson);

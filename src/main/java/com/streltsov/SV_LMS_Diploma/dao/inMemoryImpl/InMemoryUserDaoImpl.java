@@ -1,8 +1,8 @@
 package com.streltsov.SV_LMS_Diploma.dao.inMemoryImpl;
 
 import com.streltsov.SV_LMS_Diploma.domain.User;
-import com.streltsov.SV_LMS_Diploma.dao.Persistence;
-import com.streltsov.SV_LMS_Diploma.dao.UserDao;
+import com.streltsov.SV_LMS_Diploma.dao.interfacesDAO.Persistence;
+import com.streltsov.SV_LMS_Diploma.dao.interfacesDAO.UserDao;
 
 import java.util.List;
 
@@ -16,15 +16,15 @@ public class InMemoryUserDaoImpl implements UserDao {
     }
 
     @Override
-    public User saveUser(User user) {
-        int newID = Persistence.getNewId(persistence.getUserDB());
+    public boolean saveUser(User user) {
+        long newID = Persistence.getNewId(persistence.getUserDB());
         user.setUserId(newID);
         persistence.getUserDB().add(user);
-        return user;
+        return true;
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(long id) {
         for (User user : persistence.getUserDB()) {
             if (user.getUserId().equals(id)) {
                 return user;
@@ -34,15 +34,15 @@ public class InMemoryUserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean updateUserById(User user) {
-        int idUser = user.getUserId();
+    public boolean updateUser(User user) {
+        long idUser = user.getUserId();
         deleteUserById(idUser);
         saveUser(user);
         return true;
     }
 
     @Override
-    public boolean deleteUserById(int id) {
+    public boolean deleteUserById(long id) {
         for (User user : persistence.getUserDB()) {
             if (user.getUserId().equals(id)) {
                 persistence.getUserDB().remove(user);

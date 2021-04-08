@@ -9,7 +9,7 @@ public final class Group {
 
     private final CapacityUtils capacityUtils = new CapacityUtils();
 
-    private Integer groupId;
+    private Long groupId;
     private String name;
     private String direction;
     private final LocalDate startDate;
@@ -26,7 +26,8 @@ public final class Group {
         this.startDate = startDate;
     }
 
-    public Group(String name, String direction, LocalDate startDate, List<Student> listStud, List<Lesson> listLessons, Teacher initialTeacher) {
+    public Group(String name, String direction, LocalDate startDate, List<Student> listStud,
+                 List<Lesson> listLessons, Teacher initialTeacher) {
         this(name, direction, startDate);
 
         this.students = new ArrayList<>(listStud);
@@ -131,12 +132,16 @@ public final class Group {
         this.direction = direction;
     }
 
-    public void setGroupId(Integer groupId) {
+    public void setGroupId(Long groupId) {
         this.groupId = groupId;
     }
 
-    public Integer getGroupId() {
+    public Long getGroupId() {
         return groupId;
+    }
+
+    public void setTeachers(List<Teacher> teachers) {
+        this.teachers = teachers;
     }
 
     @Override
