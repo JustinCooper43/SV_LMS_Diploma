@@ -13,8 +13,8 @@ public class Runner {
 
     public static void main(String[] args) throws SQLException {
 
-        InitialDataJDBC initialDataJDBC = new InitialDataJDBC();
-        initialDataJDBC.createInitialData();
+//        InitialDataJDBC initialDataJDBC = new InitialDataJDBC();
+//        initialDataJDBC.createInitialData();
 
         JdbcUserDaoImpl jdbcUserDao = new JdbcUserDaoImpl();
         JdbcLessonDaoImpl jdbcLessonDao = new JdbcLessonDaoImpl();
